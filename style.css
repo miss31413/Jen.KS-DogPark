@@ -986,6 +986,8 @@ footer {
 
 .btn-line {
     background: linear-gradient(135deg, #00B341, #00C853) !important;
+    color: white !important;
+    border: 2px solid #00B341 !important;
     box-shadow: 0 8px 25px rgba(0, 179, 65, 0.25) !important;
 }
 
@@ -1005,6 +1007,20 @@ footer {
     background: #00B341 !important;
     color: white !important;
     box-shadow: 0 8px 25px rgba(0, 179, 65, 0.3) !important;
+}
+
+/* Slider 內的 LINE 按鈕 - 綠底白字 */
+.slide-btns .btn-line {
+    background: linear-gradient(135deg, #00B341, #00C853) !important;
+    color: white !important;
+    border: none !important;
+    box-shadow: 0 8px 25px rgba(0, 179, 65, 0.35) !important;
+}
+
+.slide-btns .btn-line:hover {
+    background: linear-gradient(135deg, #00C853, #00E676) !important;
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 12px 35px rgba(0, 179, 65, 0.45) !important;
 }
 
 
@@ -1732,18 +1748,9 @@ footer {
         justify-content: center;
     }
 
+    /* 手機版隱藏左右箭頭，避免擋字 */
     .slider-arrow {
-        width: 45px;
-        height: 45px;
-        font-size: 1rem;
-    }
-
-    .slider-arrow.prev {
-        left: 15px;
-    }
-
-    .slider-arrow.next {
-        right: 15px;
+        display: none;
     }
 
     .slider-thumbnails {
