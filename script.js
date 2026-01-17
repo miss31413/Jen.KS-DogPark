@@ -211,3 +211,177 @@ if (lightboxImg) {
 }
 
 console.log('🐕 高雄張阿姨狗園網站已載入完成！');
+
+// ========================================
+// 全屏輪播 Slider 控制
+// ========================================
+
+const fullscreenSlider = {
+    // 元素選取
+    slides: document.querySelectorAll('.fullscreen-slider .slide'),
+    thumbnails: document.querySelectorAll('.slider-thumbnails .thumbnail'),
+    prevArrow: document.querySelector('.slider-arrow.prev'),
+    nextArrow: document.querySelector('.slider-arrow.next'),
+    progressBar: document.querySelector('.slider-progress .progress-bar'),
+    counterCurrent: document.querySelector('.slider-counter .current'),
+
+    // 狀態
+    currentIndex: 0,
+    totalSlides: 4,
+    autoplayInterval: null,
+    autoplayDuration: 6000, // 6 秒自動切換
+    progressInterval: null,
+    isPaused: false,
+
+    // 初始化
+    init() {
+        if (this.slides.length === 0) return;
+
+        this.totalSlides = this.slides.length;
+        this.bindEvents();
+        this.startAutoplay();
+        this.startProgress();
+    },
+
+    // 綁定事件
+    bindEvents() {
+        // 箭頭控制
+        if (this.prevArrow) {
+            this.prevArrow.addEventListener('click', () => this.prev());
+        }
+        if (this.nextArrow) {
+            this.nextArrow.addEventListener('click', () => this.next());
+        }
+
+        // 縮圖點擊
+        this.thumbnails.forEach((thumb, index) => {
+            thumb.addEventListener('click', () => this.goTo(index));
+        });
+
+        // 鍵盤控制
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') this.prev();
+            if (e.key === 'ArrowRight') this.next();
+        });
+
+        // 滑鼠懸停暫停自動播放
+        const slider = document.querySelector('.fullscreen-slider');
+        if (slider) {
+            slider.addEventListener('mouseenter', () => this.pause());
+            slider.addEventListener('mouseleave', () => this.resume());
+        }
+
+        // 觸控滑動支援
+        this.setupTouchEvents();
+    },
+
+    // 觸控滑動
+    setupTouchEvents() {
+        const slider = document.querySelector('.fullscreen-slider');
+        if (!slider) return;
+
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        slider.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        slider.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            const diff = touchStartX - touchEndX;
+
+            if (Math.abs(diff) > 50) { // 最小滑動距離
+                if (diff > 0) {
+                    this.next();
+                } else {
+                    this.prev();
+                }
+            }
+        }, { passive: true });
+    },
+
+    // 切換到指定幻燈片
+    goTo(index) {
+        if (index < 0) index = this.totalSlides - 1;
+        if (index >= this.totalSlides) index = 0;
+
+        // 移除所有 active
+        this.slides.forEach(slide => slide.classList.remove('active'));
+        this.thumbnails.forEach(thumb => thumb.classList.remove('active'));
+
+        // 設置新的 active
+        this.slides[index].classList.add('active');
+        this.thumbnails[index].classList.add('active');
+
+        // 更新頁碼
+        if (this.counterCurrent) {
+            this.counterCurrent.textContent = index + 1;
+        }
+
+        this.currentIndex = index;
+
+        // 重置進度條
+        this.resetProgress();
+    },
+
+    // 上一張
+    prev() {
+        this.goTo(this.currentIndex - 1);
+    },
+
+    // 下一張
+    next() {
+        this.goTo(this.currentIndex + 1);
+    },
+
+    // 開始自動播放
+    startAutoplay() {
+        this.autoplayInterval = setInterval(() => {
+            if (!this.isPaused) {
+                this.next();
+            }
+        }, this.autoplayDuration);
+    },
+
+    // 暫停
+    pause() {
+        this.isPaused = true;
+    },
+
+    // 繼續
+    resume() {
+        this.isPaused = false;
+    },
+
+    // 進度條動畫
+    startProgress() {
+        if (!this.progressBar) return;
+
+        let progress = 0;
+        const step = 100 / (this.autoplayDuration / 100); // 每 100ms 更新一次
+
+        this.progressInterval = setInterval(() => {
+            if (this.isPaused) return;
+
+            progress += step;
+            this.progressBar.style.width = `${progress}%`;
+
+            if (progress >= 100) {
+                progress = 0;
+            }
+        }, 100);
+    },
+
+    // 重置進度條
+    resetProgress() {
+        if (this.progressBar) {
+            this.progressBar.style.width = '0%';
+        }
+    }
+};
+
+// 頁面載入後初始化 Slider
+document.addEventListener('DOMContentLoaded', () => {
+    fullscreenSlider.init();
+});

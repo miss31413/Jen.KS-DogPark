@@ -29,28 +29,111 @@
     </header>
 
     <main>
-        <!-- Hero Section -->
-        <section class="hero" id="home">
-            <div class="hero-content">
-                <span class="hero-badge"><i class="fa-solid fa-house-chimney"></i> 高雄岡山 · 默默守護 20 年</span>
-                <h1 class="fade-in-up">每一個生命<br>都值得被<span class="highlight">溫柔以待</span></h1>
-                <p class="fade-in-up delay-1">
-                    在高雄岡山的一隅，有一位阿姨，二十年如一日地守護著 70 多條無家可歸的生命。<br>
-                    她沒有華麗的設備，沒有充足的資金，有的只是一顆無法對苦難視而不見的心。<br>
-                    <strong>牠們曾被世界遺棄，但在這裡，牠們找到了家。</strong>
-                </p>
-                <div class="hero-btns fade-in-up delay-2">
-                    <a href="#help" class="btn-primary large"><i class="fa-solid fa-hand-holding-heart"></i> 成為牠們的希望</a>
-                    <a href="#" class="btn-secondary large btn-line"><i class="fa-brands fa-line"></i> LINE 聯繫張阿姨</a>
+        <!-- 全屏輪播 Hero Slider -->
+        <section class="fullscreen-slider" id="home">
+            <!-- 幻燈片容器 -->
+            <div class="slider-container">
+                <!-- Slide 1 -->
+                <div class="slide active" data-index="0">
+                    <div class="slide-bg" style="background-image: url('images/slider/slide1.png')"></div>
+                    <div class="slide-overlay"></div>
+                    <div class="slide-content">
+                        <span class="slide-badge"><i class="fa-solid fa-house-chimney"></i> 高雄岡山 · 默默守護 20 年</span>
+                        <h1>每一個生命<br>都值得被<span class="highlight">溫柔以待</span></h1>
+                        <p>在高雄岡山的一隅，有一位阿姨，二十年如一日地守護著 70 多條無家可歸的生命。<br>牠們曾被世界遺棄，但在這裡，牠們找到了家。</p>
+                        <div class="slide-btns">
+                            <a href="#help" class="btn-primary large"><i class="fa-solid fa-hand-holding-heart"></i>
+                                成為牠們的希望</a>
+                            <a href="#" class="btn-secondary large btn-line"><i class="fa-brands fa-line"></i> LINE
+                                聯繫張阿姨</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="social-links fade-in-up delay-2">
-                    <a href="#" class="social-btn facebook" target="_blank">
-                        <i class="fa-brands fa-facebook"></i> 追蹤粉絲頁，分享愛
-                    </a>
+
+                <!-- Slide 2 -->
+                <div class="slide" data-index="1">
+                    <div class="slide-bg" style="background-image: url('images/slider/slide2.png')"></div>
+                    <div class="slide-overlay"></div>
+                    <div class="slide-content">
+                        <span class="slide-badge"><i class="fa-solid fa-paw"></i> 浪浪的故事</span>
+                        <h1>牠的眼神<br>訴說著<span class="highlight">等待與希望</span></h1>
+                        <p>每一隻來到這裡的狗狗，都有一段心碎的過去。<br>但在張阿姨的愛護下，牠們重新學會了信任。</p>
+                        <div class="slide-btns">
+                            <a href="#dogs" class="btn-primary large"><i class="fa-solid fa-dog"></i> 認識牠們的故事</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="slide" data-index="2">
+                    <div class="slide-bg" style="background-image: url('images/slider/slide3.png')"></div>
+                    <div class="slide-overlay"></div>
+                    <div class="slide-content">
+                        <span class="slide-badge"><i class="fa-solid fa-bed"></i> 牠們的日常</span>
+                        <h1>終於能夠<br><span class="highlight">安心入睡</span></h1>
+                        <p>不再流浪街頭、不再挨餓受凍。<br>在這個簡陋卻溫暖的狗園，牠們找到了歸屬。</p>
+                        <div class="slide-btns">
+                            <a href="#gallery" class="btn-primary large"><i class="fa-solid fa-camera"></i> 看看狗園日常</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 4 -->
+                <div class="slide" data-index="3">
+                    <div class="slide-bg" style="background-image: url('images/slider/slide4.png')"></div>
+                    <div class="slide-overlay"></div>
+                    <div class="slide-content">
+                        <span class="slide-badge"><i class="fa-solid fa-heart"></i> 張阿姨的愛</span>
+                        <h1>一個人的力量<br>守護<span class="highlight">七十條生命</span></h1>
+                        <p>沒有團隊、沒有補助，只有一顆不忍心的心。<br>二十年來，她把所有的愛都給了這些毛孩。</p>
+                        <div class="slide-btns">
+                            <a href="#about" class="btn-primary large"><i class="fa-solid fa-book-open"></i>
+                                了解張阿姨的故事</a>
+                            <a href="#help" class="btn-secondary large"><i class="fa-solid fa-hand-holding-heart"></i>
+                                我想幫助</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="hero-image fade-in">
-                <img src="images/hero_dogs.png" alt="狗園裡快樂的毛孩們" class="floating">
+
+            <!-- 左右箭頭 -->
+            <button class="slider-arrow prev" aria-label="上一張">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button class="slider-arrow next" aria-label="下一張">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+
+            <!-- 底部縮圖導航 -->
+            <div class="slider-thumbnails">
+                <div class="thumbnail active" data-index="0">
+                    <img src="images/slider/slide1.png" alt="餵食時光">
+                    <span class="thumb-label">餵食時光</span>
+                </div>
+                <div class="thumbnail" data-index="1">
+                    <img src="images/slider/slide2.png" alt="等待的眼神">
+                    <span class="thumb-label">等待的眼神</span>
+                </div>
+                <div class="thumbnail" data-index="2">
+                    <img src="images/slider/slide3.png" alt="安心入睡">
+                    <span class="thumb-label">安心入睡</span>
+                </div>
+                <div class="thumbnail" data-index="3">
+                    <img src="images/slider/slide4.png" alt="阿姨的愛">
+                    <span class="thumb-label">阿姨的愛</span>
+                </div>
+            </div>
+
+            <!-- 進度指示器 -->
+            <div class="slider-progress">
+                <div class="progress-bar"></div>
+            </div>
+
+            <!-- 當前頁碼 -->
+            <div class="slider-counter">
+                <span class="current">1</span>
+                <span class="separator">/</span>
+                <span class="total">4</span>
             </div>
         </section>
 
